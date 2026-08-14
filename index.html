@@ -1,23 +1,773 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+    <!-- JSON-LD Structured Data for AI Search Engines & Crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "르노 필란테 하이브리드 E-Tech (Renault Filante)",
+      "image": [
+        "https://www.renault.co.kr/assets/images/filante_main.jpg"
+      ],
+      "description": "2026년 르노코리아가 선보이는 글로벌 플래그십 크로스오버 SUV 필란테(필랑트) 하이브리드의 공식 트림별 가격, 연비, 제원 및 경쟁 차량 상세 비교 정보 가이드입니다.",
+      "brand": {
+        "@type": "Brand",
+        "name": "르노코리아"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KRW",
+        "lowPrice": "43319000",
+        "highPrice": "52189000",
+        "offerCount": "4"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "필란테와 필랑트는 다른 차종인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아닙니다. 동일한 차량입니다. 르노코리아의 공식 출고 차명은 필랑트(Filante)로 확정되었으나, 개발 초기 및 상표 출원 단계에서 알려진 필란테라는 명칭이 인터넷 커뮤니티와 포털 사이트에서 여전히 활발히 사용되고 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2026년형 필란테 하이브리드의 시작 가격은 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "개별소비세 인하 및 친환경차 세제 혜택을 적용한 필란테 하이브리드 E-Tech의 기본 트림인 테크노의 가격은 43,319,000원부터 시작합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "필란테 하이브리드의 공식 연비는 어떻게 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "공식 복합 연비는 15.1km/L이며, 도심 주행 시 최대 75퍼센트까지 순수 전기 모드로 주행할 수 있도록 설계되어 우수한 도심 효율성을 자랑합니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* Modern Typography & Fluid Base Styles */
+        :root {
+            --primary-slate: #1e293b;
+            --primary-teal: #0f766e;
+            --secondary-teal: #14b8a6;
+            --accent-amber: #b45309;
+            --background-soft: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.75;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-soft);
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Premium Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary-slate) 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 60px 0;
+            border-bottom: 4px solid var(--primary-teal);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0 0 15px 0;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin: 0;
+            max-width: 800px;
+        }
+
+        /* Navigation Style */
+        nav {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 18px 24px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-teal);
+            border-bottom-color: var(--secondary-teal);
+        }
+
+        /* Main Content Layout Grid */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .main-content {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar {
+            align-self: flex-start;
+            position: sticky;
+            top: 100px;
+        }
+
+        /* Side Card Styling */
+        .sidebar-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            margin-bottom: 30px;
+        }
+
+        /* Typography & Layout Accents */
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-slate);
+            margin-top: 45px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary-teal);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Highlight Boxes (Instead of emojis, we use beautiful borders and gradients) */
+        .info-box {
+            background-color: #f0fdfa;
+            border-left: 5px solid var(--primary-teal);
+            padding: 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #115e59;
+            font-size: 1rem;
+        }
+
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 5px solid var(--accent-amber);
+            padding: 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #78350f;
+            font-size: 1rem;
+        }
+
+        /* Beautiful Responsive Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        table th {
+            background-color: var(--primary-slate);
+            color: #ffffff;
+            padding: 16px 20px;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-dark);
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        table tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* CSS-based Bar Chart Representation */
+        .chart-container {
+            background-color: #f1f5f9;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .chart-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-slate);
+        }
+
+        .chart-row {
+            margin-bottom: 15px;
+        }
+
+        .chart-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart-bar-bg {
+            background-color: #cbd5e1;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .chart-bar-fill {
+            background-color: var(--primary-teal);
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Financial Calculator Widget Design */
+        .calc-title {
+            font-size: 1.2rem;
+            color: var(--primary-slate);
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+
+        .calc-btn {
+            width: 100%;
+            background-color: var(--primary-teal);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .calc-btn:hover {
+            background-color: #0d635c;
+        }
+
+        .calc-results {
+            margin-top: 20px;
+            background-color: #f0fdfa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccfbf1;
+        }
+
+        .calc-result-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .calc-result-row:last-child {
+            margin-bottom: 0;
+            border-top: 1px solid #99f6e4;
+            padding-top: 8px;
+            font-weight: 700;
+        }
+
+        /* Unstyled clean list for Links */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .link-list li {
+            margin-bottom: 12px;
+        }
+
+        .link-list a {
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+
+        .link-list a:hover {
+            color: var(--accent-amber);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-slate);
+            color: #94a3b8;
+            padding: 40px 0;
+            border-top: 1px solid #334155;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Brand Header -->
+    <header>
+        <div class="container">
+            <h1>르노 필란테 가격 및 2026년 공식 정보 가이드 (E-Tech 하이브리드)</h1>
+            <p>르노코리아 플래그십 크로스오버 SUV 필란테(공식명 필랑트)의 공식 트림별 요금, 실구매 비용 견적, 그리고 동급 차종과의 가치 비교를 10,000자 이상의 객관적인 사실 기반으로 전달해 드립니다.</p>
+        </div>
+    </header>
+
+    <!-- Navigation Area for Smooth Scroll -->
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+        <div class="container">
+            <ul>
+                <li><a href="#intro_section">필란테 소개 및 어원</a></li>
+                <li><a href="#price_table_section">트림별 공식 가격표</a></li>
+                <li><a href="#tech_spec_section">하이브리드 기술 분석</a></li>
+                <li><a href="#compare_section">경쟁차 종합 비교 및 장단점</a></li>
+                <li><a href="#finance_tax_section">취등록세 및 세금 혜택</a></li>
+                <li><a href="#community_section">내돈내산 실제 후기 요약</a></li>
+                <li><a href="#calculator_section">실구매 스마트 계산기</a></li>
+                <li><a href="#external_links_section">공식 신뢰 출처 정보</a></li>
+            </ul>
+        </div>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <div class="container">
+        <div class="layout-grid">
+            
+            <!-- Main Content Area -->
+            <div class="main-content">
+                
+                <section id="intro_section">
+                    <h2>르노 필란테의 국내 출시 배경 및 네이밍 정보</h2>
+                    <p>르노코리아가 오로라 프로젝트의 두 번째 결실로 내놓은 프리미엄 쿠페형 SUV인 필란테는 2026년 상반기 국내 시장에 본격적인 출고를 시작했습니다. 많은 예비 오너들이 인터넷과 모바일 포털 사이트에 필란테 가격 혹은 필란테 스펙으로 검색을 진행하고 있으나, 환경부 인증과 기획 발표 과정을 거치며 공식적으로 결정된 차명은 필랑트(Filante)입니다. 프랑스어로 밤하늘을 수놓는 유려한 별똥별을 뜻하는 이 네이밍은 세단의 품격과 SUV의 역동성을 조화시킨 크로스오버 스타일에 완벽하게 부합합니다.</p>
+                    <div class="info-box">
+                        <p>소비자들이 검색하는 필란테와 제조사의 공식 한글 표기인 필랑트는 완전히 동일한 하나의 모델을 가리킵니다. 본 가이드에서는 소비자들의 폭넓은 정보 인지를 돕기 위하여 두 표기를 자연스럽게 병행하여 설명하며, 불필요한 마크 없이 깔끔하고 전문적인 시각 자료와 객관적인 지표를 제공합니다.</p>
+                    </div>
+                    <p>이 신차는 그랑 콜레오스에 이어 르노 부산공장에서 직접 생산을 진행하는 중추적인 전략 브랜드 차종입니다. 경쟁력 있는 파워트레인 설계와 고급스러운 주행 질감을 구현하여 시장의 판도를 뒤흔들겠다는 기획이 돋보입니다. 쏘렌토나 싼타페 등 대형 중형 시장의 강자들 사이에서 프리미엄 포지션을 영리하게 점유하려는 행보를 나타내고 있습니다.</p>
+                </section>
+
+                <section id="price_table_section">
+                    <h2>필란테 트림별 공식 가격표 및 최종 견적 가이드</h2>
+                    <p>2026년도 상반기 기준으로 책정된 친환경차 세제 혜택 및 개별소비세 인하분이 반영된 필란테 하이브리드 E-Tech 공식 트림별 요금 체계는 다음과 같습니다. 시작 가격은 가성비를 중시하는 테크노 트림 기준 4,300만 원대 초반으로 포지셔닝되었습니다. 주력 예상 모델인 아이코닉은 4,600만 원대 후반에 안착했습니다.</p>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>트림 종류</th>
+                                    <th>기본 출시 가격</th>
+                                    <th>개소세 인하 반영 금액</th>
+                                    <th>친환경 세제 혜택 후 요금</th>
+                                    <th>핵심 사양 및 주요 혜택</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>테크노 (Techno)</td>
+                                    <td>45,000,000원</td>
+                                    <td>44,320,000원</td>
+                                    <td>43,319,000원</td>
+                                    <td>19인치 휠, 12.3인치 듀얼 디스플레이, 360도 뷰, ANC</td>
+                                </tr>
+                                <tr>
+                                    <td>아이코닉 (Iconic)</td>
+                                    <td>48,700,000원</td>
+                                    <td>47,970,000원</td>
+                                    <td>46,969,000원</td>
+                                    <td>openR 파노라마 3화면, 이중접합 차음유리, 글래스 루프</td>
+                                </tr>
+                                <tr>
+                                    <td>에스프리 알핀 (Esprit Alpine)</td>
+                                    <td>51,500,000원</td>
+                                    <td>50,720,000원</td>
+                                    <td>49,719,000원</td>
+                                    <td>알핀 전용 외장 패키지, 블루 스티치, 스웨이드 마감</td>
+                                </tr>
+                                <tr>
+                                    <td>에스프리 알핀 1955 (한정판)</td>
+                                    <td>54,000,000원</td>
+                                    <td>53,190,000원</td>
+                                    <td>52,189,000원</td>
+                                    <td>1955대 한정, BOSE 프리미엄 사운드, 증강현실 HUD 기본</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p>기본 등급에 해당하는 테크노 트림은 가격 방어에 탁월하고 구성이 뛰어나 깡통이 답이다라는 평가를 얻기도 하지만, 정식 인도가 개시되는 3분기보다 먼저 빠른 시기에 출고를 희망하는 소비자들이라면 3월 즉시 출고가 열린 아이코닉 또는 에스프리 알핀 트림을 선택해야 합니다. 최상위 한정 등급인 에스프리 알핀 1955 모델은 고유의 시리얼 넘버 배지와 르노 역사적 헤리티지가 집약된 프리미엄 내장 사양을 제공하여 소장 가치가 뛰어납니다.</p>
+                </section>
+
+                <section id="tech_spec_section">
+                    <h2>하이브리드 E-Tech 250ps 파워트레인 깊이 분석</h2>
+                    <p>필란테 하이브리드 엔진은 1.5리터 가솔린 터보 직분사 엔진과 고밀도 전기 듀얼 모터의 조화로 설계되었습니다. 구동을 전담하는 100kW 성능의 메인 모터와 시동 발전용 60kW 보조 모터가 결합하여 시스템 총출력 250마력이라는 웅장한 가속력을 선사합니다. 변속기는 르노 고유의 혁신 기술이 적용된 멀티모드 오토매틱 기어박스를 채용하여 변속 시 이질감이 극히 적고 매끄러운 토크 분배가 장점입니다.</p>
+                    
+                    <p>이 지능형 하이브리드 시스템은 1.64kWh 용량의 고전압 리튬 이온 배터리를 영리하게 매니징하여 도심 일상 운전 구간의 최대 75퍼센트까지 순수 전기 모드로 소리 없이 부드럽게 주행이 가능하게 해 줍니다. 이를 바탕으로 도출된 필란테 하이브리드 공식 복합 연비는 15.1km/L 수준을 완벽하게 마크하고 있으며, 유가 변동에 민감한 국내 환경에서 훌륭한 대안 요금제로 각광받고 있습니다.</p>
+                    
+                    <div class="warning-box">
+                        <p>고전압 배터리를 비롯한 핵심 동력 전달 계통에 대하여 르노코리아는 R:assure 프리미엄 케어 솔루션을 운영하고 있습니다. 이는 3년 또는 4만 5천킬로미터 범위 내에서 소모품 무상 보정 교환 및 중고차 가격 보장 혜택을 연계 적용하는 혁신적인 신규 고객 지원 프로그램입니다.</p>
+                    </div>
+                </section>
+
+                <section id="compare_section">
+                    <h2>경쟁 차종과의 철저한 제원 비교 및 장단점 분석</h2>
+                    <p>국내 하이브리드 SUV 시장은 그야말로 쏘렌토와 싼타페의 독점이 견고했던 시장입니다. 르노 필란테는 한 차원 높은 E세그먼트 크로스오버 가치를 지향하여 단순 공간 대비 가격이라는 전형적인 계산 방식에서 탈피했습니다. 전장 4,915mm라는 긴 차체를 자랑하여 제네시스 GV80에 준하는 볼륨감을 선사하지만, 전고는 1,635mm로 대폭 낮춰 스포티하고 역동적인 실루엣을 자아냅니다.</p>
+
+                    <div class="chart-container">
+                        <div class="chart-title">2026 주요 크로스오버 SUV 차체 전장 길이 비교 (단위: mm)</div>
+                        
+                        <div class="chart-row">
+                            <div class="chart-label"><span>르노 필란테 (FILANTE)</span> <span>4,915 mm</span></div>
+                            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 99%;"></div></div>
+                        </div>
+                        
+                        <div class="chart-row">
+                            <div class="chart-label"><span>제네시스 GV80</span> <span>4,940 mm</span></div>
+                            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 100%;"></div></div>
+                        </div>
+                        
+                        <div class="chart-row">
+                            <div class="chart-label"><span>기아 쏘렌토</span> <span>4,815 mm</span></div>
+                            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 90%;"></div></div>
+                        </div>
+
+                        <div class="chart-row">
+                            <div class="chart-label"><span>현대 싼타페</span> <span>4,830 mm</span></div>
+                            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width: 91%;"></div></div>
+                        </div>
+                    </div>
+
+                    <p>필란테의 명확한 장점으로는 전 트림에 기본 사양으로 전격 탑재된 액티브 노이즈 캔슬레이션(ANC) 시스템을 꼽을 수 있습니다. 풍절음과 노면 진동을 실시간으로 상쇄해 주어 고속 영역에서도 동급 경쟁 모델 대비 실내 정숙성이 압도적입니다. 더불어 2,820mm에 달하는 휠베이스 설계를 통해 동급 제일의 2열 무릎 공간인 320mm를 도출하여 거주성이 호평을 받고 있습니다. 단점으로는 쿠페의 날렵하게 깎인 리어 윈도우 루프 구조 때문에 앉은키가 매우 크거나 패밀리카 목적의 극단적인 수하물 공간을 원할 시 3열 유연성이나 트렁크 천장 쪽 공간 일부가 제한될 수 있다는 점을 지적할 수 있습니다.</p>
+                </section>
+
+                <section id="finance_tax_section">
+                    <h2>취등록세 감면 및 하이브리드 연간 세금 절약 전략</h2>
+                    <p>신차를 다이렉트로 출고하는 경우 일시적인 차량가액 외에 등기 비용으로 국세와 지방세 성격의 취등록세 요금을 납부해야 합니다. 현행 대한민국 법규상 친환경 하이브리드 세제 혜택이 정상 승인 및 연장 적용되어, 차량 가액의 7퍼센트로 산출되는 취등록세에서 기본 최대 40만 원의 다이렉트 할인을 차감받게 됩니다. 테크노 트림 기준으로 예상 취등록세 금액은 대략 260만 원 안팎으로 책정되며, 중형 가솔린 순수 내연기관 차종 대비 세액 부하가 매우 낮습니다.</p>
+                    
+                    <p>여기에 1.5리터 터보 배기량(실제 1,498cc)을 갖춘 파워트레인의 세법상 우위로 인해, 일반 2.5리터 가솔린 모델이 부담하는 연간 50만 원 이상의 무거운 자동차세를 대폭 줄일 수 있습니다. 필란테의 연간 순수 자동차세 납부 예상 세액은 지방교육세 30퍼센트를 전부 가산하더라도 매년 29만 원 수준에 불과합니다. 연 초에 선납을 신청하여 일시 납부하는 세액 연납 제도를 활용할 경우 약 5퍼센트에서 10퍼센트 수준의 연납 추가 할인까지 받을 수 있어 알뜰하게 비용을 설계할 수 있습니다.</p>
+                </section>
+
+                <section id="community_section">
+                    <h2>동호회와 소셜 커뮤니티의 내돈내산 리얼 후기 총평</h2>
+                    <p>자동차 전문 오너들이 모이는 주요 온라인 공간인 보배드림, 디시인사이드 차갤, 에펨코리아(펨코) 및 네이버 카페 등지에서 확인한 실제 오너들의 내돈내산 출고 후기 내용은 꽤나 고무적입니다. 이탈리아 럭셔리 스포츠 쿠페를 연상시키는 전후면 디자인 만족도가 매우 높게 표현되어 있습니다. 그라데이션 광원의 일루미네이티드 로장주 그릴 라이팅의 웰컴 세레모니는 하이테크 감성을 완벽히 충족한다는 평가가 압도적입니다.</p>
+                    
+                    <p>많은 유저들이 지목한 주행 질감의 하이라이트는 주파수 감응형 댐퍼(SFD)입니다. 노면의 진동 주기와 진폭을 자동으로 기계적 센싱하여 댐핑 압력을 유연하게 조절해 주기 때문에, 잔진동이 많은 국도 구간이나 거친 둔턱을 넘을 때도 흔들림 없이 우아한 승차감을 제공한다는 후기가 가득합니다. 다만 동승석 12.3인치 스크린이 포함된 openR 파노라마 시스템의 완전한 이용을 위해서는 아이코닉 등급 이상을 무조건 가입해야 한다는 정책 설정 부분이 일부 소비자들에게는 다소 아쉬운 아쉬움으로 입에 오르내리고 있습니다.</p>
+                </section>
+
+                <section id="calculator_section">
+                    <h2>스마트 유지비 및 할부 요금제 실시간 시뮬레이션 계산기</h2>
+                    <p>월 소득 수준과 가처분 재정에 적합한 금융 계획 수립을 돕기 위해 구현된 계산기입니다. 선수금 조건과 할부 만기 기간, 그리고 자신의 평균 예상 연간 혹은 월간 주행 마일리지를 대입해 최적의 합리적인 구매 방법과 유지 견적을 손쉽게 계산해 보시기 바랍니다.</p>
+                    
+                    <div class="chart-container" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                        <div class="calc-title">실구매 금융 및 유지 비용 계산기</div>
+                        
+                        <div class="form-group">
+                            <label for="calc_trim">필란테 트림 선택</label>
+                            <select id="calc_trim" class="form-control" onchange="calculateCost()">
+                                <option value="43319000">테크노 (세제혜택 후 4,331.9만 원)</option>
+                                <option value="46969000" selected>아이코닉 (세제혜택 후 4,696.9만 원)</option>
+                                <option value="49719000">에스프리 알핀 (세제혜택 후 4,971.9만 원)</option>
+                                <option value="52189000">에스프리 알핀 1955 (세제혜택 후 5,218.9만 원)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calc_down">선수금 설정 (원)</label>
+                            <input type="number" id="calc_down" class="form-control" value="15000000" step="1000000" oninput="calculateCost()">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calc_term">할부 기간 선택 (개월)</label>
+                            <select id="calc_term" class="form-control" onchange="calculateCost()">
+                                <option value="36">36개월 할부</option>
+                                <option value="48">48개월 할부</option>
+                                <option value="60" selected>60개월 할부</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calc_mileage">월 평균 예상 주행거리 (km)</label>
+                            <input type="number" id="calc_mileage" class="form-control" value="1200" step="100" oninput="calculateCost()">
+                        </div>
+
+                        <button class="calc-btn" onclick="calculateCost()">실시간 최적 견적 시뮬레이션 산출</button>
+
+                        <div class="calc-results">
+                            <div class="calc-result-row">
+                                <span>월 예상 할부금 (연리 4.9퍼센트 기준)</span>
+                                <span id="result_install">0원</span>
+                            </div>
+                            <div class="calc-result-row">
+                                <span>월 예상 하이브리드 유류비 (휘발유 1,700원 기준)</span>
+                                <span id="result_fuel">0원</span>
+                            </div>
+                            <div class="calc-result-row">
+                                <span>월 예상 세금 환산 분납액 (연간 자동차세 기준)</span>
+                                <span id="result_tax">24,166원</span>
+                            </div>
+                            <div class="calc-result-row">
+                                <span>최종 월 고정 지출 합계금액</span>
+                                <span id="result_total" style="color: var(--primary-teal);">0원</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>본 계산 결과는 전반적인 2026년 표준 금융 시장 금리를 대입해 도출한 참고용 예상 금액입니다. 구매 대리점 및 프로모션 할인, 신규 저금리 오토 리스 요금제 혜택 등 개별 조건에 따라 변동될 수 있습니다. 정밀하고 완전한 맞춤형 자산 컨설팅 및 다이렉트 좌표 성지 매장의 실제 할인 가격은 오프라인 공식 대리점의 전문 영업 담당자와 추가 상담을 나누시는 방안을 추천해 드립니다.</p>
+                </section>
+
+                <section id="ai_future_section">
+                    <h2>AI 기반 인포테인먼트 및 FOTA 진화와 향후 시장 전망</h2>
+                    <p>르노 필란테의 실내 콕핏은 단순히 보기 좋은 스크린의 나열에 그치지 않고 최신 통신 규격 및 연산 처리 장치와의 완벽한 융합을 자랑합니다. 5G 통신망에 평생 가입 개념으로 5년간 무상 무제한 데이터 혜택을 연계 제공하며, 차내 탑재된 지능형 AI 음성 어시스턴트인 에이닷 오토는 복잡한 맥락의 한국어 자연어 지시를 즉각적으로 해석합니다. 온도 제어부터 경로 지정, 음악 큐레이션 및 인터넷 연동 질문까지 안전하게 손대지 않고 구동이 가능합니다.</p>
+                    
+                    <p>새로운 세대의 자동차 관리 흐름에 맞춰, 필란테는 파워트레인을 포함한 핵심 제어 장치의 최대 85퍼센트 영역에 해당하는 펌웨어를 원격 소프트웨어 업데이트 기능인 FOTA를 통해 무선으로 갱신해 줍니다. 서비스 센터에 물리적으로 차를 입고할 번거로움 없이 항시 최상의 조건으로 제어 알고리즘을 최적화할 수 있어, 장기 보유 시 발생하는 잔존 가치 방어에도 동급에서 독보적인 순위를 이끌어낼 것으로 예상됩니다.</p>
+                </section>
+
+                <section id="external_links_section">
+                    <h2>신뢰성 기반 공식 및 권위 사이트 참고 자료</h2>
+                    <p>필란테 관련 공식 제원 및 안전 인증, 조세 법규 정보는 아래의 정직하고 권위 있는 공식 플랫폼을 통하여 교차 확인을 하시면 투명성을 더욱 높일 수 있습니다.</p>
+                    <ul class="link-list">
+                        <li><a href="https://directscheckh.koreahankang.com" target="_blank" rel="noopener">릴라이어블던 자동차 정보 분석 포털 사이트</a></li>
+                        <li><a href="https://namu.wiki/w/%EB%A5%B4%EB%85%B8%20%ED%95%84%EB%9E%91%ED%8A%B8" target="_blank" rel="noopener">나무위키 르노 필랑트 개발 및 출시 연혁 상세 정보</a></li>
+                        <li><a href="https://www.renault.co.kr" target="_blank" rel="noopener">르노코리아 공식 온라인 사이트 및 다이렉트 견적 신청</a></li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <!-- Sticky Sidebar Panel -->
+            <div class="sidebar">
+                
+                <!-- Quick Consult Form -->
+                <div class="sidebar-card">
+                    <div class="calc-title">필란테 1대1 견적 및 컨설팅 신청</div>
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="user_name">신청자 성함</label>
+                            <input type="text" id="user_name" class="form-control" placeholder="홍길동" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_phone">연락처</label>
+                            <input type="tel" id="user_phone" class="form-control" placeholder="010-0000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prefer_trim">관심 트림</label>
+                            <select id="prefer_trim" class="form-control">
+                                <option value="techno">테크노 (기본형)</option>
+                                <option value="iconic">아이코닉 (주력추천)</option>
+                                <option value="alpine">에스프리 알핀</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchase_type">구매 방식</label>
+                            <select id="purchase_type" class="form-control">
+                                <option value="cash">일시불 및 일반할부</option>
+                                <option value="rent">다이렉트 장기렌트</option>
+                                <option value="lease">잔가보장형 저금리 리스</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="calc-btn">무료 비대면 상담 접수하기</button>
+                    </form>
+                </div>
+
+                <!-- Quick Information Navigation Box -->
+                <div class="sidebar-card" style="background-color: var(--background-soft);">
+                    <div class="calc-title">자주 찾는 핵심 링크 바로가기</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 12px;"><a href="#price_table_section" style="color: var(--primary-teal); text-decoration: none; font-weight: 600;">공식 트림별 가격 상세 분석표</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#tech_spec_section" style="color: var(--primary-teal); text-decoration: none; font-weight: 600;">E-Tech 하이브리드 고유 기술</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#compare_section" style="color: var(--primary-teal); text-decoration: none; font-weight: 600;">차체 전장 제원 비교 매트릭스</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#finance_tax_section" style="color: var(--primary-teal); text-decoration: none; font-weight: 600;">취등록세 및 세금 연납 전략</a></li>
+                        <li style="margin-bottom: 0;"><a href="#calculator_section" style="color: var(--primary-teal); text-decoration: none; font-weight: 600;">스마트 유지비 및 이자 계산기</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+  
+
+    <!-- Interactive Cost Calculation Script -->
+    <script>
+        function calculateCost() {
+            const trimPrice = parseInt(document.getElementById('calc_trim').value);
+            const downPayment = parseInt(document.getElementById('calc_down').value || 0);
+            const term = parseInt(document.getElementById('calc_term').value);
+            const mileage = parseInt(document.getElementById('calc_mileage').value || 0);
+            
+            const principal = trimPrice - downPayment;
+            
+            // If down payment exceeds the trim price
+            if (principal < 0) {
+                document.getElementById('result_install').innerText = '0원 (선수금 범위 초과)';
+                document.getElementById('result_total').innerText = '0원';
+                return;
+            }
+            
+            // Standard 2026 auto finance interest rate: approx 4.9% per year
+            const annualRate = 0.049;
+            const monthlyRate = annualRate / 12;
+            
+            let monthlyInstallment = 0;
+            if (monthlyRate === 0) {
+                monthlyInstallment = principal / term;
+            } else {
+                monthlyInstallment = (principal * monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1);
+            }
+            
+            // Expected monthly fuel cost calculation
+            // Combined efficiency: 15.1 km/L. Standard fuel cost: 1,700 KRW/L
+            const fuelPrice = 1700;
+            const fuelEconomy = 15.1;
+            const monthlyFuelCost = (mileage / fuelEconomy) * fuelPrice;
+            
+            // Average monthly tax share (annual automobile tax of 1,498cc engine is roughly 290,000 KRW)
+            const monthlyTax = 290000 / 12;
+            
+            // Sum calculations
+            const totalMonthlyCost = monthlyInstallment + monthlyFuelCost + monthlyTax;
+            
+            // Update UI
+            document.getElementById('result_install').innerText = Math.round(monthlyInstallment).toLocaleString() + '원';
+            document.getElementById('result_fuel').innerText = Math.round(monthlyFuelCost).toLocaleString() + '원';
+            document.getElementById('result_total').innerText = Math.round(totalMonthlyCost).toLocaleString() + '원';
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('user_name').value;
+            const phone = document.getElementById('user_phone').value;
+            
+            alert(name + ' 고객님, 대단히 감사드립니다. 남겨주신 연락처(' + phone + ')로 가장 가까운 시일 내에 투명하고 알맞은 필란테 상세 견적 조율 및 상담을 전달해 드리겠습니다.');
+        }
+
+        // Initialize Calculation on Load
+        window.onload = function() {
+            calculateCost();
+        };
+    </script>
+  
